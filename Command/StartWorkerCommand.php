@@ -77,7 +77,7 @@ class StartWorkerCommand extends ContainerAwareCommand
         if (isset($redisDatabase)) {
             $env['REDIS_BACKEND_DB'] = $redisDatabase;
         }
-        if (isset($redisPassword)) {
+        if (isset($redisPassword) && $redisPassword != 'null') {
             $env['REDIS_BACKEND_PASSWORD'] = $redisPassword;
         }
 
@@ -150,7 +150,7 @@ class StartWorkerCommand extends ContainerAwareCommand
     private static function commandExists($cmd)
     {
         $returnVal = shell_exec("which $cmd");
-        
+
         return !empty($returnVal);
-    }    
+    }
 }
