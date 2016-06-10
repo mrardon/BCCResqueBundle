@@ -46,7 +46,7 @@ class Resque
         );
         $host = substr($host, 0, 1) == '/' ? $host : $host.':'.$port;
 
-        if (!isset($password)) {
+        if (!isset($password) && $password != 'null') {
             \Resque::setBackend($host.':'.$port, $database);
         } else {
             $server = 'redis://:' . $password . '@' . $host . ':' . $port;
